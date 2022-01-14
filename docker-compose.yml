@@ -1,0 +1,29 @@
+version: '3'
+
+services: 
+  web:
+    build: 
+      context: ./torr
+    container_name: tornado123
+    ports: 
+      - "8000:8000"
+    depends_on: 
+      - db
+    command: ["torn", "run"]
+    volumes:
+      - ./torr:/torr
+
+  db:
+    image: nouchka/sqlite3:latest
+    volumes:
+      - torr/test.db/
+    stdin_open: true
+    tty: true
+ 
+
+
+
+
+
+volumes:
+  static_volume:
